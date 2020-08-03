@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Annan blogi",
+    "Author": "Anna",
+    "url": "anna.fi",
+    "likes": 40
+    
+}

@@ -4,7 +4,7 @@ Content-Type: application/json
 {
     "title": "Liisan blogi",
     "Author": "Liisa",
-    "url": "liisa.fi",
+    "url": ".fi",
     "likes": 100
     
 }

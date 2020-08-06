@@ -19,8 +19,15 @@ blogsRouter.post('/', async (request, response) => {
     .then(result => {
       response.status(201).json(result)
     }) */
+  const body = request.body
 
-  const blog = await new Blog(request.body)
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes === undefined ? 0 : body.likes,
+  })
+
   const savedBlog = await blog.save()
   response.status(201).json(savedBlog.toJSON())
 

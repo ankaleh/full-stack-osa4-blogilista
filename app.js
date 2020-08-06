@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+require('express-async-errors')
 
 //työkalut:
 const config = require('./utils/config')

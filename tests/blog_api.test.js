@@ -52,6 +52,22 @@ test('blog identifier is named id', async () => {
   expect(response.body.map(r => r.id)).toBeDefined()
 })
 
+test('a new blog can be added', async() => {
+  const newBlog = { title: 'TDD harms architecture', author: 'Robert C. Martin', url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html', likes: 0 }
+  let blogsInDb = await Blog.find({})
+  const blogsAtBeginning = await blogsInDb.map(blog => blog.toJSON())
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  blogsInDb = await Blog.find({})
+  const blogsAtEnd = await blogsInDb.map(blog => blog.toJSON())
+  expect(blogsAtEnd).toHaveLength(blogsAtBeginning.length + 1)
+
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })

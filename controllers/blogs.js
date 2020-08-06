@@ -11,14 +11,19 @@ blogsRouter.get('/', async (request, response) => {
  */
 })
 
-blogsRouter.post('/', (request, response) => {
-  const blog = new Blog(request.body)
+blogsRouter.post('/', async (request, response) => {
+  /* const blog = new Blog(request.body)
 
   blog
     .save()
     .then(result => {
       response.status(201).json(result)
-    })
+    }) */
+
+  const blog = await new Blog(request.body)
+  const savedBlog = await blog.save()
+  response.status(201).json(savedBlog.toJSON())
+
 })
 
 module.exports = blogsRouter

@@ -37,6 +37,21 @@ test('blogs are calculated right', async () => {
   expect(response.body).toHaveLength(2)
 })
 
+test('blog identifier is named id', async () => {
+  const response = await api.get('/api/blogs')
+
+  /* toimii:
+  const authors = response.body.map(r => r.author)
+  console.log('blogaajat: ', authors)
+  expect(authors).toHaveLength(2) */
+
+  /* const id_s = response.body.map(r => r.id)
+  const id = id_s[0]
+  expect(id).toBeDefined() */
+
+  expect(response.body.map(r => r.id)).toBeDefined()
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })

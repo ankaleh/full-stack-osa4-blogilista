@@ -10,11 +10,12 @@ const middleware = require('./utils/middleware')
 
 //kontrolleri:
 const blogsRouter = require('./controllers/blogs')
-
+const userRouter = require('./controllers/users')
+const loginRouter = require('./controllers/login')
 //tietokanta:
 const mongoose = require('mongoose')
 const mongoUrl = config.MONGODB_URI
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(() => {
     logger.info('Yhditetty MOngoDB:hen.')
   })
@@ -28,6 +29,8 @@ app.use(express.json()) //Expressin json-parseri ottaa pyynnön mukana tulevan d
 
 app.use(middleware.requestLogger)
 app.use('/api/blogs', blogsRouter)
+app.use('/api/users', userRouter)
+app.use('/api/login', loginRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)

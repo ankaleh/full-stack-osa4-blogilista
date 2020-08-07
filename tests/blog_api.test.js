@@ -88,6 +88,12 @@ test('undefined title and url is to be answered by code 400', async () => {
       .send(newBlog)
       .expect(400)
       .expect('Content-Type', /application\/json/)
+
+  let blogsInDb = await Blog.find({})
+
+  const blogsAtEnd = await blogsInDb.map(blog => blog.toJSON())
+
+  expect(blogsAtEnd).toHaveLength(2)
 })
 
 afterAll(() => {

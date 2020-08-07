@@ -14,7 +14,7 @@ const blogsRouter = require('./controllers/blogs')
 //tietokanta:
 const mongoose = require('mongoose')
 const mongoUrl = config.MONGODB_URI
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then(() => {
     logger.info('Yhditetty MOngoDB:hen.')
   })

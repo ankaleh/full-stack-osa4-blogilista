@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 require('express-async-errors')
-
 //työkalut:
 const config = require('./utils/config')
 const logger = require('./utils/logger')
@@ -28,6 +27,7 @@ app.use(cors())
 app.use(express.json()) //Expressin json-parseri ottaa pyynnön mukana tulevan datan (JSON), muuttaa sen JS-olioksi ja sijoittaa request-olion kenttään body ennen kuin Routeria kutsutaan.
 
 app.use(middleware.requestLogger)
+app.use(middleware.tokenExtractor)
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)

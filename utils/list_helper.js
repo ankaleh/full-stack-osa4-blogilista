@@ -28,9 +28,43 @@ const favoriteBlog = (blogs) => {
   return foundBlog
 }
 
+const mostBlogs = (blogs) => {
+  let author = ''
+  let numberOfBlogs = 0
+  blogs.forEach(blog => {
+    const amount = blogs.filter(b => b.author === blog.author)
+    if (amount.length >= numberOfBlogs) {
+      numberOfBlogs = amount.length
+      author = blog.author
+    }
+  })
+  return { author: author, blogs: numberOfBlogs }
+
+}
+
+const mostLikes = (blogs) => {
+  let author = ''
+  let mostLikes = 0
+
+  blogs.forEach(blog => {
+    const authorsBlogs = blogs.filter(b => b.author === blog.author)
+    const likes = authorsBlogs.reduce((sum, blog) => {
+      return sum + blog.likes
+    }, 0)
+    if (likes >= mostLikes) {
+      mostLikes = likes
+      author = blog.author
+    }
+  })
+
+  return { author: author, likes: mostLikes }
+
+}
 
 module.exports = {
   dummy,
   totalLikes,
-  favoriteBlog
+  favoriteBlog,
+  mostBlogs,
+  mostLikes
 }

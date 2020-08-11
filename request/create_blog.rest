@@ -1,11 +1,11 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imhlc3N1IiwiaWQiOiI1ZjMwZjJjZjIwNWEzNzA0ODA2YzFkZDYiLCJpYXQiOjE1OTcxMjIxNTF9.EE7n9ATQNisUjZzxJmZLnFSD9I9E1inxG67JRJ6xjoY
 
 {
-    "title": "Hessun blogi",
-    "author": "Hessu",
-    "url": "hessu.fi",
-    "likes": 543,
-    "userId": "5f2d36c69933b9241c19ac29"
+    "title": "Milla Magian blogi",
+    "author": "Milla Magia",
+    "url": "milla.fi",
+    "likes": 290
     
 }
